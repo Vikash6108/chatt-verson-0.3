@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ChatterBox</title>
+    <link rel="stylesheet" href="/styles/style.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Satisfy&family=VT323&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="top_baar">
+      <img src="/images/chat-logo.jpg" alt="" />
+      <h2>ChatterBox</h2>
+    </div>
+    <div id="main">
+      <div class="box_menu">
+        <div class="top_icon">
+          <i class="ri-menu-line"></i>
+          <i class="ri-chat-1-line"></i>
+          <i class="ri-phone-line"></i>
+          <div class="line"></div>
+          <img
+            src="https://img.icons8.com/?size=100&id=99868&format=png&color=FFFFFF"
+            alt=""
+          />
+        </div>
+
+        <div class="bottom_icon">
+          <i class="ri-star-line"></i>
+          <i class="ri-archive-line"></i>
+          <div class="line"></div>
+          <i class="ri-settings-2-line"></i>
+          <i class="ri-profile-line"></i>
+        </div>
+      </div>
+
+      <div id="box_left">
+        <div class="box_left_top">
+          <div class="box1">
+            <div class="box1_left">
+              <h2>Chat</h2>
+            </div>
+
+            <div class="icon">
+              <i class="ri-chat-new-line"></i>
+              <i class="ri-filter-3-line"></i>
+            </div>
+          </div>
+          <div class="box2">
+            <i class="ri-search-line"></i>
+            <input
+              type="search"
+              name="q"
+              placeholder="Search or start a new chat..."
+              required
+            />
+          </div>
+        </div>
+
+        <form id="card_box" action="">
+          <div class="card" id="card1">
+            <div class="card_profile">
+              <img
+                src="<%= user.photos && user.photos[0] ? user.photos[0].value : 'https://plus.unsplash.com/premium_photo-1673306778968-5aab577a7365?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmFja2dyb3VuZCUyMGltYWdlfGVufDB8fDB8fHww' %>"
+                alt=""
+              />
+              <h5><%= user.displayName || user.username %></h5>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div id="box_right">
+        <div class="box_right_top">
+          <!--   click event -->
+          <div class="profile">
+            <script>
+              document
+                .getElementById("card1")
+                .addEventListener("click", function () {
+                  const profileHTML = `
+                  <div class="profile"> 
+                    <div id="profile-left">
+                      <img
+                        src="<%= user.photos && user.photos[0] ? user.photos[0].value : 'https://plus.unsplash.com/premium_photo-1673306778968-5aab577a7365?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmFja2dyb3VuZCUyMGltYWdlfGVufDB8fDB8fHww' %>"
+                        alt=""
+                      />
+                      <h3><%= user.displayName || user.username %></h3>
+                    </div>
+                    <div id="profile-right">
+                      <i class="ri-video-on-line"></i>
+                      <i class="ri-phone-line"></i>
+                      <i class="ri-search-line"></i>
+                    </div>
+                  </div>
+                `;
+
+                  document.querySelector(".box_right_top").innerHTML =
+                    profileHTML;
+                });
+            </script>
+          </div>
+        </div>
+
+        <div class="message_left_baar"></div>
+        <div class="box_right_buttom">
+          <!--    file send & emoji & payment integration -->
+
+          <div class="buttom_box">
+            <i class="ri-emoji-sticker-line"></i>
+            <i class="ri-attachment-line"></i>
+          </div>
+
+          <div class="type_message">
+            <!-- send message throw webSocket -->
+
+            <input
+              type="search"
+              name="q"
+              placeholder="Type a message..."
+              required
+            />
+            <div class="send_sms">
+              <i class="ri-send-plane-fill"></i>
+            </div>
+          </div>
+
+          <div class="buttom_box1">
+            <a id="pay" href="/pay/create/orderId" target="_blank">
+              <i class="ri-money-rupee-circle-line"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

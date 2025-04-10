@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>userRegister on Chatterbox</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="flex items-center justify-center min-h-screen bg-gray-500">
+    <div
+      class="w-full max-w-md p-6 bg-gray-900 rounded-lg shadow-[1px_1px_10px_5px_rgb(255,254,254)] hover:h-[490px]"
+    >
+      <h2 class="mb-4 text-2xl font-semibold text-white text-center">
+        Register on Chatterbox
+      </h2>
+
+      <form action="/users/register" method="post" class="space-y-4">
+        <div>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Username"
+            required
+            class="w-full p-2 mt-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-black text-white"
+          />
+        </div>
+
+        <div>
+          <input
+            type="text"
+            id="fullname"
+            name="fullname"
+            placeholder="Full Name"
+            required
+            class="w-full p-2 mt-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-black text-white"
+          />
+        </div>
+
+        <div>
+          <input
+            type="text"
+            id="mobile_email"
+            name="email"
+            placeholder=" Email "
+            required
+            class="w-full p-2 mt-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-black text-white"
+          />
+        </div>
+
+        <div>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Password"
+            required
+            class="w-full p-2 mt-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-black text-white"
+          />
+        </div>
+
+        <div>
+          <input
+            type="password"
+            id="confirm_password"
+            name="conform_password"
+            placeholder="Conform Password"
+            class="w-full p-2 mt-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-black text-white"
+          />
+        </div>
+
+        <button
+          type="submit"
+          class="w-full p-2 text-white bg-blue-600 rounded-md hover:bg-blue-700"
+        >
+          Sign Up
+        </button>
+      </form>
+
+      <p class="mt-4 text-center text-sm text-white">
+        Already have an account?
+        <a href="/users/Login" class="text-blue-500 hover:underline"
+          >Login here</a
+        >
+      </p>
+
+      
+    </div>
+  </body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Satisfy&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Login Chatterbox</title>
+    <style>
+      .font-satisfy {
+        font-family: "Satisfy", cursive;
+      }
+      .font-press-start {
+        font-family: "Press Start 2P", cursive;
+      }
+    </style>
+  </head>
+
+  <body class="flex items-center justify-center min-h-screen bg-gray-500">
+    <div
+      id="login"
+      class="w-full max-w-md p-6 bg-gray-900 rounded-[15px] shadow-[1px_1px_10px_5px_rgb(255,254,254)] hover:h-[470px] hover:border[]"
+    >
+      <div class="p-6 rounded-lg shadow-md text-center">
+        <h1
+          class="text-2xl text-gray-800 text-center text-white font-press-start"
+        >
+          Chatterbox
+        </h1>
+        <p class="text-gray-600 mt-2 text-center p-2 text-white">
+          Allows users to create a unique profile.
+        </p>
+      </div>
+
+      <h2 class="mb-4 text-2xl font-semibold text-center text-white">
+        User Login
+      </h2>
+
+      <form action="/users/login" method="post" class="space-y-4">
+        <div>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
+            required
+            class="w-full p-2 mt-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-black text-white"
+          />
+        </div>
+        <div>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter your password"
+            required
+            class="w-full p-2 mt-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-black text-white"
+          />
+        </div>
+        <button
+          type="submit"
+          class="w-full p-2 text-white bg-blue-600 rounded-md hover:bg-blue-700"
+        >
+          Login now
+        </button>
+      </form>
+      <p class="mt-4 text-center text-sm text-gray-600 text-white">
+        Don't have an account?
+        <a href="/users/register" class="text-blue-500 hover:underline"
+          >Register here</a
+        >
+      </p>
+
+      <a
+        href="/auth/google/"
+        class="flex items-center w-[50%] justify-center mx-auto space-x-2 p-2 border rounded-lg shadow mt-2"
+      >
+        <img
+          src="https://www.svgrepo.com/show/475656/google-color.svg"
+          alt="Google Logo"
+          class="w-6 h-6"
+        />
+        <span class="text-white hover:text-blue-500">Login with Google</span>
+      </a>
+    </div>
+  </body>
+</html>
