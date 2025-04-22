@@ -78,10 +78,29 @@
         <form id="card_box" action="">
           <div class="card" id="card1">
             <div class="card_profile">
+              <% if (user.profileImage && user.profileImage.data) { %>
+              <!-- Show uploaded image from MongoDB -->
               <img
-                src="<%= user.photos && user.photos[0] ? user.photos[0].value : 'https://plus.unsplash.com/premium_photo-1673306778968-5aab577a7365?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmFja2dyb3VuZCUyMGltYWdlfGVufDB8fDB8fHww' %>"
-                alt=""
+                src="data:<%= user.profileImage.contentType %>;base64,<%= user.profileImage.data.toString('base64') %>"
+                alt="<%= user.username %>’s avatar"
+                class="rounded-full w-12 h-12 object-cover"
               />
+              <% } else if (user.profile) { %>
+              <!-- Show image from Google login -->
+              <img
+                src="<%= user.profile %>"
+                alt="<%= user.username %>"
+                class="rounded-full w-12 h-12 object-cover"
+              />
+              <% } else { %>
+              <!-- Show default image -->
+              <img
+                src="/images/default-avatar.png"
+                alt="Default avatar"
+                class="rounded-full w-12 h-12 object-cover"
+              />
+              <% } %>
+
               <h5><%= user.displayName || user.username %></h5>
             </div>
           </div>
@@ -98,10 +117,22 @@
                   const profileHTML = `
                   <div class="profile"> 
                     <div id="profile-left">
-                      <img
-                        src="<%= user.photos && user.photos[0] ? user.photos[0].value : 'https://plus.unsplash.com/premium_photo-1673306778968-5aab577a7365?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmFja2dyb3VuZCUyMGltYWdlfGVufDB8fDB8fHww' %>"
-                        alt=""
-                      />
+                      <% if (user.profileImage && user.profileImage.data) { %>
+                        <img
+                          src="data:<%= user.profileImage.contentType %>;base64,<%= user.profileImage.data.toString('base64') %>"
+                          alt="Profile Image"
+                        />
+                      <% } else if (user.profile) { %>
+                        <img
+                          src="<%= user.profile %>"
+                          alt="Google Profile Image"
+                        // />
+                      <% } else { %>
+                        <img
+                          src="/images/default-avatar.png"
+                          alt="Default Profile Image"
+                        />
+                      <% } %>
                       <h3><%= user.displayName || user.username %></h3>
                     </div>
                     <div id="profile-right">
@@ -111,7 +142,6 @@
                     </div>
                   </div>
                 `;
-
                   document.querySelector(".box_right_top").innerHTML =
                     profileHTML;
                 });
@@ -119,28 +149,124 @@
           </div>
         </div>
 
-        <div class="message_left_baar"></div>
+        <div class="message_left_baar "></div>
         <div class="box_right_buttom">
           <!--    file send & emoji & payment integration -->
-
           <div class="buttom_box">
             <i class="ri-emoji-sticker-line"></i>
             <i class="ri-attachment-line"></i>
           </div>
-
+          <!-- send message thru websocket -->
           <div class="type_message">
-            <!-- send message throw webSocket -->
-
-            <input
-              type="search"
-              name="q"
-              placeholder="Type a message..."
-              required
-            />
+            <input type="text" placeholder="send message..." name="text" id="messageInput" />
             <div class="send_sms">
-              <i class="ri-send-plane-fill"></i>
+              <i id="sendIcon" class="ri-send-plane-fill"></i>
             </div>
+            
           </div>
+      
+          <script
+            src="https://cdn.socket.io/4.8.1/socket.io.min.js"
+            integrity="sha384-mkQ3/7FUtcGyoppY6bz/PORYoGqOl7/aSUMn2ymDOJcapfS6PHqxhRTMh1RR0Q6+"
+            crossorigin="anonymous"
+          ></script>
+        
+      
+      
+      
+      
+          <script>
+            let socket = io();
+            const sendIcon = document.querySelector("#sendIcon");
+            const messageInput = document.querySelector("#messageInput");
+            const allMessage = document.querySelector(".message_left_baar")
+      
+            function getCurrentTime() {
+              const now = new Date();
+              return now.toLocaleTimeString([], {
+                hour: "2-digit",
+                minute: "2-digit",
+              });
+            }
+      
+            // Show messages from others (left)
+            socket.on("sendMsg-EveryUser", (data) => {
+              if (data.senderId !== socket.id) {
+                const p = document.createElement("p");
+                p.innerHTML = `${data.message} <span class="timestamp">${getCurrentTime()}</span>`; // set time on message
+                p.classList.add("message", "left");
+                allMessage.appendChild(p);
+                p.style.fontSize="small"
+              }
+            });
+      
+            // Send message (right)
+            sendIcon.addEventListener("click", () => {
+              const message = messageInput.value.trim();
+              if (!message) return;
+      
+              const p = document.createElement("p");
+              p.innerHTML = `${message} <span class="timestamp">${getCurrentTime()}</span>`; // set time on message
+              p.classList.add("message", "right");
+              allMessage.appendChild(p);
+      
+              socket.emit("sendUser-Message", {
+                message,
+                senderId: socket.id,
+              });
+      
+              messageInput.value = "";
+            });
+      
+            // Emit typing when user types
+            messageInput.addEventListener("input", () => {
+              socket.emit("typing");
+            });
+      
+            // When another user is typing
+            socket.on("typing", () => {
+              // Only change placeholder if this user is not currently typing
+              if (document.activeElement !== messageInput) {
+                messageInput.placeholder = "User is typing...";
+      
+                clearTimeout(window.typingReset); // Clear existing timeout
+                window.typingReset = setTimeout(() => {
+                  messageInput.placeholder = "Send msg";
+                }, 2000); // Reset after 2 seconds
+              }
+            });
+          </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
           <div class="buttom_box1">
             <a id="pay" href="/pay/create/orderId" target="_blank">

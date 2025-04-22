@@ -11,34 +11,40 @@ module.exports.registerViewController = (req, res) => {
 };
 
 module.exports.registerUserController = async (req, res) => {
-  const { username, fullname, email, password, conform_password } = req.body;
+  try {
+    const { username, fullname, email, password } = req.body;
 
-  if (password !== conform_password) {
-    res.send(`
-      <script> alert("Conform password not match") </script>
-        `)
+    let profileImage = null;
+    if (req.file) {
+      profileImage = {
+        data: req.file.buffer,
+        contentType: req.file.mimetype,
+      };
+    }
+
+    const hashPassword = await bcrypt.hash(password, 10);
+
+    const user = await userModel.create({
+      username,
+      fullname,
+      email,
+      password: hashPassword,
+      profileImage,
+    });
+
+    // console.log(user);
+    const token = jwt.sign(
+      {
+        id: user._id,
+        email: user.email,
+      },
+      process.env.JWT_SEC
+    );
+    res.cookie("token", token);
+    res.redirect("/profiles/create");
+  } catch (err) {
+    next(err);
   }
-
-  const hashPassword = await bcrypt.hash(password, 10);
-
-  const user = await userModel.create({
-    username,
-    fullname,
-    email,
-    password: hashPassword,
-  });
-
-  const token = jwt.sign(
-    {
-      id: user._id,
-      email: user.email,
-    },
-    process.env.JWT_SEC
-  );
-
-  res.cookie("token", token);
-
-  res.redirect("/profiles/create");
 };
 
 module.exports.loginViewController = (req, res) => {
@@ -58,14 +64,12 @@ module.exports.loginUserController = async (req, res) => {
       `);
   }
 
-
   const isMatch = await bcrypt.compare(password, user.password);
 
   if (!isMatch) {
-     res.status(400).send(`
+    res.status(400).send(`
     <script> alert("invalid password")</script>
-      `)
-
+      `);
   }
 
   const token = jwt.sign(

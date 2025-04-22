@@ -4,13 +4,9 @@ const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 dotenv.config({ path: "./.env" });
 
-module.exports.googleAuthController = (req, res) => {
-  passport.authenticate("google", { scope: ["profile", "email"] });
-};
 
-// Callback route that Google will redirect to after authentication
 module.exports.authGoogleCallbackController = [
-  passport.authenticate("google", { session: false }), // data exchange from google and send user profile data
+  passport.authenticate("google", { session: false }),
   (req, res) => {
     try {
       const token = jwt.sign(
@@ -23,14 +19,21 @@ module.exports.authGoogleCallbackController = [
           expiresIn: "1h",
         }
       );
-      // Send the token to the client
-      // res.json({ token });
-      res.render('userProfile', { user: req.user });
+
+      // Create a clean user object with googleImage
+      const user = {
+        id: req.user.id,
+        displayName: req.user.displayName,
+        email: req.user.emails && req.user.emails[0]?.value,
+        googleImage: req.user.photos && req.user.photos[0]?.value,
+      };
+
+      console.log("User sent to EJS:", user);
+
+      res.render("userProfile", { user });
     } catch (error) {
-      console.log("error", error);
+      console.log("Google Auth Error:", error);
+      res.redirect("/login");
     }
-    console.log(req.user)
- 
-    // Generate a JWT for the authenticated user
   },
 ];

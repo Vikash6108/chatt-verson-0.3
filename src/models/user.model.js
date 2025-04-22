@@ -13,8 +13,9 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
   },
-  conform_password: {
-    type: String,
+  profileImage: {
+    data: Buffer,
+    contentType: String
   },
 });
 const userModel = mongoose.model("user", userSchema);
