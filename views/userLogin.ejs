@@ -23,18 +23,17 @@
     </style>
   </head>
 
-  <body class="flex items-center justify-center min-h-screen bg-gray-500">
+  <body class="flex items-center justify-center min-h-screen bg-black p-4">
     <div
       id="login"
-      class="w-full max-w-md p-6 bg-gray-900 rounded-[15px] shadow-[1px_1px_10px_5px_rgb(255,254,254)] hover:h-[470px] hover:border[]"
+      class="w-full max-w-md p-6 bg-gray-900 rounded-[15px] shadow-[1px_1px_20px_1px_rgb(200,200,200)] transition-all duration-300 hover:scale-105"
     >
-      <div class="p-6 rounded-lg shadow-md text-center">
-        <h1
-          class="text-2xl text-gray-800 text-center text-white font-press-start"
-        >
+    
+      <div class="p-6 text-center">
+        <h1 class="text-2xl text-white font-press-start mb-2">
           Chatterbox
         </h1>
-        <p class="text-gray-600 mt-2 text-center p-2 text-white">
+        <p class="text-gray-300 text-sm font-satisfy">
           Allows users to create a unique profile.
         </p>
       </div>
@@ -51,7 +50,7 @@
             name="email"
             placeholder="Enter your email"
             required
-            class="w-full p-2 mt-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-black text-white"
+            class="w-full p-3 mt-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-black text-white placeholder-gray-400"
           />
         </div>
         <div>
@@ -61,26 +60,28 @@
             name="password"
             placeholder="Enter your password"
             required
-            class="w-full p-2 mt-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-black text-white"
+            class="w-full p-3 mt-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-black text-white placeholder-gray-400"
           />
         </div>
         <button
           type="submit"
-          class="w-full p-2 text-white bg-blue-600 rounded-md hover:bg-blue-700"
+          class="w-full p-3 text-white bg-blue-600 rounded-md hover:bg-blue-700 font-semibold"
         >
-          Login now
+          Login Now
         </button>
       </form>
-      <p class="mt-4 text-center text-sm text-gray-600 text-white">
+
+      <p class="mt-4 text-center text-sm text-gray-300">
         Don't have an account?
-        <a href="/users/register" class="text-blue-500 hover:underline"
-          >Register here</a
-        >
+        <a href="/users/register" class="text-blue-500 hover:underline font-semibold">
+          Register here
+        </a>
       </p>
 
+      <!-- KEEPING YOUR GOOGLE LOGIN BUTTON STYLE -->
       <a
         href="/auth/google/"
-        class="flex items-center w-[50%] justify-center mx-auto space-x-2 p-2 border rounded-lg shadow mt-2"
+        class="flex items-center w-[50%] justify-center mx-auto space-x-2 p-2 border rounded-lg shadow mt-4"
       >
         <img
           src="https://www.svgrepo.com/show/475656/google-color.svg"
@@ -90,5 +91,14 @@
         <span class="text-white hover:text-blue-500">Login with Google</span>
       </a>
     </div>
+    <script>
+      window.addEventListener("load", () => {
+        const form = document.querySelector("form");
+        if (form) {
+          form.reset(); // clears all input fields on page load
+        }
+      });
+    </script>
+    
   </body>
 </html>

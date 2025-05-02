@@ -3,151 +3,587 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ChatterBox</title>
+    <title>New ChatterBox</title>
     <link rel="stylesheet" href="/styles/style.css" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Satisfy&family=VT323&display=swap"
-      rel="stylesheet"
-    />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap"
-      rel="stylesheet"
-    />
-
     <link
       href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
       rel="stylesheet"
     />
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body>
-    <div class="top_baar">
-      <img src="/images/chat-logo.jpg" alt="" />
-      <h2>ChatterBox</h2>
-    </div>
-    <div id="main">
-      <div class="box_menu">
-        <div class="top_icon">
-          <i class="ri-menu-line"></i>
-          <i class="ri-chat-1-line"></i>
-          <i class="ri-phone-line"></i>
-          <div class="line"></div>
+  <body class="w-full h-screen">
+    <div class="w-full h-full flex items-center justify-center">
+      <!--  left div -->
+      <div id="icons-div" class="w-[3%] h-full bg-black">
+        <div
+          id="logo"
+          class="w-full h-[6%] rounded-full flex items-center justify-center bg-white mt-[5px]"
+        >
           <img
-            src="https://img.icons8.com/?size=100&id=99868&format=png&color=FFFFFF"
+            class="w-full h-full rounded-full"
+            src="/images/chat-logo.jpg"
             alt=""
           />
+          <!-- <h2>ChatterBox</h2> -->
         </div>
-
-        <div class="bottom_icon">
-          <i class="ri-star-line"></i>
-          <i class="ri-archive-line"></i>
-          <div class="line"></div>
-          <i class="ri-settings-2-line"></i>
-          <i class="ri-profile-line"></i>
+        <div
+          id="top-icon"
+          class="w-full h-[40%] flex flex-col items-center gap-[25px] mt-[30px]"
+        >
+          <i
+            id="theme-toggle"
+            class="theme ri-moon-line theme-toggle-btn text-lg text-white bg-gray-500 px-[9px] py-[6px] rounded-[7px] cursor-pointer transition-all duration-500 hover:rounded-[50px] hover:text-black hover:bg-[#dcd9d9]"
+          ></i>
+          <i
+            class="ri-chat-ai-line text-lg text-white bg-gray-500 px-[9px] py-[6px] rounded-[7px] cursor-pointer transition-all duration-500 hover:rounded-[50px] hover:text-black hover:bg-[#dcd9d9]"
+          ></i>
+          <i
+            class="ri-phone-line text-lg text-white bg-gray-500 px-[9px] py-[6px] rounded-[7px] cursor-pointer transition-all duration-500 hover:rounded-[50px] hover:text-black hover:bg-[#dcd9d9]"
+          ></i>
         </div>
-      </div>
-
-      <div id="box_left">
-        <div class="box_left_top">
-          <div class="box1">
-            <div class="box1_left">
-              <h2>Chat</h2>
-            </div>
-
-            <div class="icon">
-              <i class="ri-chat-new-line"></i>
-              <i class="ri-filter-3-line"></i>
-            </div>
-          </div>
-          <div class="box2">
-            <i class="ri-search-line"></i>
-            <input
-              type="search"
-              name="q"
-              placeholder="Search or start a new chat..."
-              required
+        <div
+          id="profile-logout"
+          class="w-full h-[49%] bg-black flex flex-col justify-end items-center"
+        >
+          <div
+            id="logout-user"
+            class="h-[40px] w-[40px] bg-white flex justify-center items-center mb-[10px] rounded-full"
+          >
+            <img
+              class="w-[100%] h-[100%] rounded-[50%] objectFit-cover"
+              src="https://imgs.search.brave.com/TzSGhVE9h7sL72DT7uBCVU1sxGq3xddgFCbivvazyt8/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9zMy51/cy1lYXN0LTEuYW1h/em9uYXdzLmNvbS9m/aWxlcy5nYWxheHlk/aWdpdGFsLmNvbS81/ODI1L2FnZW5jeS8x/MzM0NTYtNDg4Mzg3/OS1mMzkyNDk3MV9m/LmpwZw"
+              alt=""
             />
           </div>
         </div>
-
-        <form id="card_box" action="">
-          <div class="card" id="card1">
-            <div class="card_profile">
-              <img
-                src="<%= user.photos && user.photos[0] ? user.photos[0].value : 'https://plus.unsplash.com/premium_photo-1673306778968-5aab577a7365?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmFja2dyb3VuZCUyMGltYWdlfGVufDB8fDB8fHww' %>"
-                alt=""
-              />
-              <h5><%= user.displayName || user.username %></h5>
-            </div>
-          </div>
-        </form>
       </div>
-      <div id="box_right">
-        <div class="box_right_top">
-          <!--   click event -->
-          <div class="profile">
-            <script>
-              document
-                .getElementById("card1")
-                .addEventListener("click", function () {
-                  const profileHTML = `
-                  <div class="profile"> 
-                    <div id="profile-left">
-                      <img
-                        src="<%= user.photos && user.photos[0] ? user.photos[0].value : 'https://plus.unsplash.com/premium_photo-1673306778968-5aab577a7365?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmFja2dyb3VuZCUyMGltYWdlfGVufDB8fDB8fHww' %>"
-                        alt=""
-                      />
-                      <h3><%= user.displayName || user.username %></h3>
-                    </div>
-                    <div id="profile-right">
-                      <i class="ri-video-on-line"></i>
-                      <i class="ri-phone-line"></i>
-                      <i class="ri-search-line"></i>
-                    </div>
-                  </div>
-                `;
-
-                  document.querySelector(".box_right_top").innerHTML =
-                    profileHTML;
-                });
-            </script>
-          </div>
-        </div>
-
-        <div class="message_left_baar"></div>
-        <div class="box_right_buttom">
-          <!--    file send & emoji & payment integration -->
-
-          <div class="buttom_box">
-            <i class="ri-emoji-sticker-line"></i>
-            <i class="ri-attachment-line"></i>
+      <!-- middle div -->
+      <div id="profile-div" class="w-[35%] h-full bg-black">
+        <!-- <h2>ChatterBox</h2> -->
+        <div
+          id="top-box"
+          class="mt-[50px] w-full h-[15%] bg-[#8c8c8c] flex flex-col items-center justify-around border-b border-b-[#cacaca]"
+        >
+          <div id="chat-text" class="w-full">
+            <p class="font-sans text-2xl font-medium text-left ml-[5px]">
+              Chat
+            </p>
           </div>
 
-          <div class="type_message">
-            <!-- send message throw webSocket -->
-
+          <div
+            id="search-friend"
+            class="w-[450px] h-[35px] flex items-center justify-center bg-black rounded-[5px] border-b-[3px] border-b-[#00ff6e]"
+          >
+            <i class="ri-search-line ml-[3px] text-[#c1c1c1]"></i>
             <input
               type="search"
-              name="q"
-              placeholder="Type a message..."
-              required
+              placeholder="Search user friend . . ."
+              name="search"
+              id="search"
+              class="ml-[5px] w-full h-[20px] text-medium outline-none border-none bg-[#030303] text-[#c1c1c1]"
             />
-            <div class="send_sms">
-              <i class="ri-send-plane-fill"></i>
-            </div>
-          </div>
-
-          <div class="buttom_box1">
-            <a id="pay" href="/pay/create/orderId" target="_blank">
-              <i class="ri-money-rupee-circle-line"></i>
-            </a>
           </div>
         </div>
+        <div id="user-profile" class="w-full h-[78%] bg-[#8c8c8c] pt-[5px]">
+          <div
+            id="userProfile"
+            class="w-[75%] h-[15%] ml-[60px] mt-[2.5px] bg-[#6c6b6b] flex items-center rounded-[10px] border-b-[2px] border-b-[#020202] cursor-pointer hover:bg-[#5d5b5b]"
+          >
+            <% if (user.profileImage && user.profileImage.data) { %>
+
+            <!-- Show uploaded image from MongoDB -->
+            <img
+              src="data:<%= user.profileImage.contentType %>;base64,<%= user.profileImage.data.toString('base64') %>"
+              alt="<%= user.username %>’s avatar"
+              class="w-[15%] h-[75%] ml-[7px] rounded-full object-cover"
+            />
+            <% } else if (user.googleProfileImage) { %>
+            <!-- Show image from Google login -->
+            <img
+              src="<%= user.googleProfileImage %>"
+              alt="<%= user.username %>"
+              class="w-[15%] h-[75%] ml-[7px] rounded-full object-cover"
+            />
+            <% } else { %>
+            <!-- Show default image -->
+            <img
+              src="/images/default-avatar.png"
+              alt="Default avatar"
+              class="w-[15%] h-[75%] ml-[7px] rounded-full object-cover"
+            />
+            <% } %>
+
+            <h5 class="text-white font-sans text-2xl ml-[10%] mt-[-30px]">
+              <%= user.fullname || user.username %>
+            </h5>
+          </div>
+        </div>
+      </div>
+      <!-- left-msg -->
+      <div
+        id="msg-div"
+        class="w-[62%] h-full bg-[#312e2e] text-[#aliceblue] font-sans flex flex-col items-center justify-between"
+      >
+        <div
+          id="windows-chat"
+          class="w-full h-full text-center flex flex-col items-center justify-center"
+        >
+          <img
+            src="/images/chatbot.png"
+            class="w-[100px] h-[100px] text-[#424141] object-cover"
+            alt=""
+          />
+          <h1 class="text-xl text-[#949494]">ChatterBox for Windows</h1>
+          <p class="text-medium text-[#949494]">
+            Send and receive message smoothly with <br />
+            AI Chatbot, real-time communication Using ChatterBox application
+          </p>
+        </div>
+        <div id="increption" class="text-[#666666] mb-[70px]">
+          <p><i class="ri-lock-2-line"></i> End-to-end encrypted</p>
+        </div>
+
+        <script
+          src="https://cdn.socket.io/4.8.1/socket.io.min.js"
+          integrity="sha384-mkQ3/7FUtcGyoppY6bz/PORYoGqOl7/aSUMn2ymDOJcapfS6PHqxhRTMh1RR0Q6+"
+          crossorigin="anonymous"
+        ></script>
+
+        <script>
+          const handleClicked = () => {
+            const msgDiv = document.getElementById("msg-div");
+            msgDiv.innerHTML = ""; // Clear previous content
+
+            // Top User Profile
+            const topUserProfile = document.createElement("div");
+            topUserProfile.id = "topUserProfile";
+            Object.assign(topUserProfile.style, {
+              width: "100%",
+              height: "10%",
+              backgroundColor: "#fff",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            });
+
+            const topProfile = document.createElement("div");
+            topProfile.id = "topProfile";
+            Object.assign(topProfile.style, {
+              width: "50%",
+              height: "100%",
+              backgroundColor: "#000",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "flex-start",
+            });
+
+            // const midMessage=document.createElement("div")
+
+            const profileImg = document.createElement("img");
+            if ("user.profileImage && user.profileImage.data") {
+              profileImg.src =
+                "data:<%= user.profileImage.contentType %>;base64,<%= user.profileImage.data.toString('base64') %>";
+              profileImg.alt = "<%= user.username %>";
+
+              Object.assign(profileImg.style, {
+                width: "12%",
+                height: "75%",
+                marginLeft: "15px",
+                borderRadius: "50%",
+                objectFit: "cover",
+              });
+            } else if ("user.googleProfileImage") {
+              profileImg.src = "data:<%= user.googleProfileImage %>";
+              profileImg.alt = "<%= user.username %>";
+
+              Object.assign(profileImg.style, {
+                width: "12%",
+                height: "75%",
+                marginLeft: "15px",
+                borderRadius: "50%",
+                objectFit: "cover",
+              });
+            } else {
+              profileImg.src =
+                "https://www.pngarts.com/files/10/Default-Profile-Picture-Download-PNG-Image.png";
+              profileImg.alt = "Default avatar";
+
+              Object.assign(profileImg.style, {
+                width: "12%",
+                height: "75%",
+                marginLeft: "15px",
+                borderRadius: "50%",
+                objectFit: "cover",
+              });
+            }
+
+            const profileName = document.createElement("p");
+            profileName.textContent = "<%=user.fullname || user.username %>";
+            // console.log(user.id)
+            Object.assign(profileName.style, {
+              color: "white",
+              marginLeft: "40px",
+              fontSize: "larger",
+              marginTop: "-30px",
+            });
+
+            topProfile.appendChild(profileImg);
+            topProfile.appendChild(profileName);
+
+            // Video / Voice Call Section
+            const videoVoiceCall = document.createElement("div");
+            videoVoiceCall.id = "videoVoiceCall";
+
+            Object.assign(videoVoiceCall.style, {
+              width: "50%",
+              height: "100%",
+              backgroundColor: "black",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "flex-end",
+            });
+
+            function createIcon(className) {
+              const iconContainer = document.createElement("div"); // New wrapper
+              Object.assign(iconContainer.style, {
+                width: "40px",
+                height: "40px",
+                backgroundColor: "#3f3f3f",
+                marginRight: "20px",
+                borderRadius: "7px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                cursor: "pointer",
+                transition: "0.3s",
+              });
+
+              const icon = document.createElement("i");
+              icon.className = className;
+              Object.assign(icon.style, {
+                fontSize: "18px",
+                color: "white",
+              });
+
+              iconContainer.appendChild(icon);
+
+              // Hover effects
+              iconContainer.addEventListener("mouseover", () => {
+                iconContainer.style.borderRadius = "50%";
+                iconContainer.style.backgroundColor = "#dcd9d9";
+                icon.style.color = "#000";
+              });
+              iconContainer.addEventListener("mouseout", () => {
+                iconContainer.style.borderRadius = "10px";
+                iconContainer.style.backgroundColor = "#3f3f3f";
+                icon.style.color = "#fff";
+              });
+
+              return iconContainer;
+            }
+
+            const videoIcon = createIcon("ri-video-on-line");
+            const phoneIcon = createIcon("ri-phone-line");
+
+            videoVoiceCall.appendChild(videoIcon);
+            videoVoiceCall.appendChild(phoneIcon);
+
+            topUserProfile.appendChild(topProfile);
+            topUserProfile.appendChild(videoVoiceCall);
+
+            //    show chat message div
+            const messageContainer = document.createElement("div");
+            messageContainer.id = "messageContainer";
+            messageContainer.className =
+              "w-full h-[80%] flex flex-col gap-2 overflow-y-auto";
+
+            // Message-Multer div
+            const msgInput = document.createElement("div");
+            msgInput.id = "msgInput";
+            Object.assign(msgInput.style, {
+              width: "100%",
+              height: "10%",
+              backgroundColor: "rgb(24, 24, 24)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            });
+
+            const melterIcon = document.createElement("div");
+            melterIcon.id = "melter-icon";
+            Object.assign(melterIcon.style, {
+              padding: "5px 9px",
+              backgroundColor: "#424141",
+              color: "#fff",
+              borderRadius: "7px",
+              margin: "30px",
+              cursor: "pointer",
+              transition: "0.3s",
+            });
+
+            const attachIcon = document.createElement("i");
+            attachIcon.className = "ri-attachment-line";
+            attachIcon.style.fontSize = "larger";
+            melterIcon.appendChild(attachIcon);
+
+            melterIcon.addEventListener("mouseover", () => {
+              melterIcon.style.backgroundColor = "#fff";
+              melterIcon.style.color = "#000";
+              melterIcon.style.borderRadius = "30px";
+            });
+            melterIcon.addEventListener("mouseout", () => {
+              melterIcon.style.backgroundColor = "#424141";
+              melterIcon.style.color = "#fff";
+              melterIcon.style.borderRadius = "7px";
+            });
+
+            // sendMessage-websocket div
+
+            const sendMsgInput = document.createElement("div");
+            sendMsgInput.id = "sendMsgInput";
+            Object.assign(sendMsgInput.style, {
+              width: "75%",
+              height: "80%",
+              backgroundColor: "#424141",
+              borderRadius: "7px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "flex-start",
+            });
+
+            // sendMessage-websocket input tag
+
+            const input = document.createElement("input");
+            Object.assign(input, {
+              type: "text",
+              placeholder: "send message...",
+              name: "text",
+              id: "messageInput",
+            });
+            Object.assign(input.style, {
+              width: "90%",
+              height: "75%",
+              fontSize: "large",
+              outline: "none",
+              border: "none",
+              marginLeft: "10px",
+              backgroundColor: "#424141",
+              color: "#fff",
+            });
+
+            const sendIcon = document.createElement("i");
+            sendIcon.className = "ri-send-plane-fill";
+            sendIcon.id = "sendIcon";
+            Object.assign(sendIcon.style, {
+              fontSize: "x-large",
+              color: "#fdfdfd",
+              cursor: "pointer",
+              transition: "0.3s",
+              padding: "10px",
+            });
+
+            sendIcon.addEventListener(
+              "mouseenter",
+              () => (sendIcon.style.color = "#03c54a")
+            );
+            sendIcon.addEventListener(
+              "mouseleave",
+              () => (sendIcon.style.color = "#fdfdfd")
+            );
+
+            sendMsgInput.appendChild(input);
+            sendMsgInput.appendChild(sendIcon);
+
+            msgInput.appendChild(melterIcon);
+            msgInput.appendChild(sendMsgInput);
+
+            // Final Append
+            msgDiv.appendChild(topUserProfile); // TopUserProfile
+            msgDiv.appendChild(messageContainer); //  show chat message div
+            msgDiv.appendChild(msgInput); // Message-Multer div
+
+            // logic Socket
+
+            let socket = io();
+            const userId = "<%= user._id %>"; // EJS injects current user's ID
+            socket.emit("user-online", userId);
+
+            const sendIcons = document.querySelector("#sendIcon");
+            const messageInput = document.querySelector("#messageInput");
+            const allMessage = document.querySelector("#messageContainer");
+
+            function getCurrentTime() {
+              const now = new Date();
+              return now.toLocaleTimeString([], {
+                hour: "2-digit",
+                minute: "2-digit",
+              });
+            }
+
+            // Show messages from others (left)
+            socket.on("sendMsg-EveryUser", (data) => {
+              if (data.senderId !== socket.id) {
+                const p = document.createElement("p");
+                p.innerHTML = `${
+                  data.message
+                } <span class="timestamp">${getCurrentTime()}</span>`; // set time on message
+                p.classList.add("message", "left");
+                allMessage.appendChild(p);
+              }
+            });
+
+            socket.on("receiveMsg-FromDB", (data) => {          //
+              const p = document.createElement("p");
+              p.innerHTML = `${data.senderName}: ${
+                data.message
+              } <span class="timestamp">${new Date(
+                data.timestamp
+              ).toLocaleTimeString()}</span>`;
+              p.classList.add("message", "left");
+              allMessage.appendChild(p);
+            });
+
+            // Send message (right)
+            sendIcons.addEventListener("click", () => {
+              const message = messageInput.value.trim();
+              if (!message) return;
+
+              const p = document.createElement("p");
+              p.innerHTML = `${message} <span class="timestamp">${getCurrentTime()}</span>`; // set time on message
+              p.classList.add("message", "right");
+              allMessage.appendChild(p);
+
+              // const user_id = '<%= user._id %>'
+
+              // console.log(user_id);
+
+              socket.emit("sendUser-Message", {
+                // user_id,
+                message,
+                senderId: socket.id,
+              });
+
+              messageInput.value = "";
+            });
+
+            // Emit typing when user types
+            messageInput.addEventListener("input", () => {
+              socket.emit("typing");
+            });
+
+            // When another user is typing
+            socket.on("typing", () => {
+              // Only change placeholder if this user is not currently typing
+              if (document.activeElement !== messageInput) {
+                messageInput.placeholder = "User is typing...";
+
+                clearTimeout(window.typingReset); // Clear existing timeout
+                window.typingReset = setTimeout(() => {
+                  messageInput.placeholder = "Send msg";
+                }, 2000); // Reset after 2 seconds
+              }
+            });
+          };
+          document
+            .getElementById("userProfile")
+            .addEventListener("click", handleClicked);
+        </script>
+
+        <!-- theme mood -->
+
+        <script>
+          const themes = {
+            low: {
+              bgColor: "#f9f9f9",
+              sidebarColor: "#f1f1f1",
+              profileColor: "#ffffff",
+              msgDivColor: "#f7f7f7",
+              textColor: "#333333",
+              iconColor: "#cccccc",
+              logoutBg: "#ffffff",
+              logoutUserBg: "#cccccc",
+              logoBg: "#ffffff",
+              iconBg: "#cccccc",
+            },
+            medium: {
+              bgColor: "#e0e0e0",
+              sidebarColor: "#d3d3d3",
+              profileColor: "#ffffff",
+              msgDivColor: "#dcdcdc",
+              textColor: "#222222",
+              iconColor: "#888888",
+              logoutBg: "#f1f1f1",
+              logoutUserBg: "#aaaaaa",
+              logoBg: "#e0e0e0",
+              iconBg: "#aaaaaa",
+            },
+            high: {
+              bgColor: "#333333",
+              sidebarColor: "#2a2a2a",
+              profileColor: "#444444",
+              msgDivColor: "#555555",
+              textColor: "#f0f0f0",
+              iconColor: "#f5f5f5",
+              logoutBg: "#555555",
+              logoutUserBg: "#777777",
+              logoBg: "#444444",
+              iconBg: "#666666",
+            },
+          };
+
+          let currentThemeIndex = 0;
+          const themeToggleButton = document.getElementById("theme-toggle");
+          const body = document.body;
+          const iconsDiv = document.getElementById("icons-div");
+          const profileDiv = document.getElementById("profile-div");
+          const msgDiv = document.getElementById("msg-div");
+          const profileLogout = document.getElementById("profile-logout");
+          const logoutUser = document.getElementById("logout-user");
+          const logo = document.getElementById("logo");
+
+          // Icons inside "top-icon" div
+          const allSidebarIcons = document.querySelectorAll("#top-icon i");
+
+          themeToggleButton.addEventListener("click", () => {
+            currentThemeIndex = (currentThemeIndex + 1) % 3;
+            const currentTheme = Object.values(themes)[currentThemeIndex];
+
+            body.style.backgroundColor = currentTheme.bgColor;
+            body.style.color = currentTheme.textColor;
+            iconsDiv.style.backgroundColor = currentTheme.sidebarColor;
+            profileDiv.style.backgroundColor = currentTheme.profileColor;
+            msgDiv.style.backgroundColor = currentTheme.bgColor;
+            themeToggleButton.style.backgroundColor = currentTheme.iconBg;
+            themeToggleButton.style.color = currentTheme.textColor;
+            profileLogout.style.backgroundColor = currentTheme.logoutBg;
+            logoutUser.style.backgroundColor = currentTheme.logoutUserBg;
+            logoutUser.style.color = currentTheme.textColor;
+            logo.style.backgroundColor = currentTheme.logoBg;
+            logo.style.color = currentTheme.textColor;
+
+            allSidebarIcons.forEach((icon) => {
+              icon.style.backgroundColor = currentTheme.iconBg;
+              icon.style.color = currentTheme.textColor;
+              icon.style.transition =
+                "background-color 0.5s ease, color 0.5s ease";
+            });
+
+            // transition sab pe smooth
+            [
+              body,
+              iconsDiv,
+              profileDiv,
+              msgDiv,
+              themeToggleButton,
+              profileLogout,
+              logoutUser,
+              logo,
+            ].forEach((el) => {
+              el.style.transition =
+                "background-color 0.5s ease, color 0.5s ease";
+            });
+          });
+        </script>
       </div>
     </div>
   </body>

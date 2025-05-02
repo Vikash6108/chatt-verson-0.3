@@ -2,31 +2,42 @@ const express = require("express");
 const app = express();
 const userRoutes = require("./routers/user.router");
 const profileRoutes = require("./routers/profile.router");
-const payRouter = require("./routers/pay.router");
-const cookieParser = require("cookie-parser");
-const session=require("express-session")
-const flash=require("connect-flash")
 
-// const cors = require("cors")
-// app.use(cors())
+const cookieParser = require("cookie-parser");
+const flash = require("connect-flash");
+
+const chatRoutes = require("./routers/chat.Router");
+const messageRoutes=require("./routers/message.router")
+
+// app.use(express.static(path.join(__dirname, "public")));
 
 const jwt = require("jsonwebtoken");
 const authRouter = require("./routers/google.router");
-const passport = require("passport");
-const { Strategy: GoogleStrategy } = require("passport-google-oauth20");
-
 const dotenv = require("dotenv");
+const userModel = require("./models/user.model");
+// const profileModel = require("./models/profile.model")
 dotenv.config();
-
-app.use(passport.initialize());
-
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-// Configure Passport to use Google OAuth 2.0 strategy
+const session = require('express-session');
+
+const passport = require('passport');
+app.use(session({
+  secret: process.env.GOOGLE_CLIENT_SECRET, // change this to a secure secret in production
+  resave: false,
+  saveUninitialized: false
+}));
+
+
+
+app.use(passport.initialize());
+
+const { Strategy: GoogleStrategy } = require("passport-google-oauth20");
+
 passport.use(
   new GoogleStrategy(
     {
@@ -34,37 +45,86 @@ passport.use(
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: "/auth/google/callback",
     },
-    (accessToken, refreshToken, profile, done) => {
+    async (accessToken, refreshToken, profile, done) => {
+      try {
+        // console.log(profile)
+        let user = await userModel.findOne({ googleId: profile.id });
+        if (!user) {
+          // If not, create a new user
+          user = await userModel.create({
+            googleId: profile?.id,
+            username: profile?.displayName,
+            email: profile?.emails[0].value,
+            googleProfileImage: profile?.photos[0].value,
+          });
+          
+        }
+        const token = jwt.sign(
+          {
+            id:user._id,
+            email:user.email,
+          },
+          process.env.JWT_SECRET,
+          {expiresIn: '1h'},
+        );
+        user=user.toObject();
+        user.token=token;
+
+        // console.log("user created")
+        // console.log(user);
+        return done(null, user);
+      } catch (err) {
+        return done(err, null);
+      }
       // Here, you would typically find or create a user in your database
       // For this example, we'll just return the profile
-      // console.log("askdkjfjkafkjaf");
-
-      return done(null, profile);
     }
   )
 );
 
-// app.get('/auth/google',
-//   passport.authenticate('google', { scope: ['profile', 'email'] })
-// );
+// Serialize user into session (store a unique identifier)
+passport.serializeUser((user, done) => {
+  console.log(user)
+  console.log("serialized user")
+  done(null, user._id); // Or use user.googleId if you prefer
+});
+
+// Deserialize user from session (retrieve user from DB using the stored identifier)
+passport.deserializeUser(async (id, done) => {
+  console.log("hello deserializing user ",user)
+  try {
+    const user = await userModel.findById(id); // Fetch user from the DB
+    done(null, user); // Store the user object in the request session
+  } catch (err) {
+    done(err, null);
+  }
+});
+
+// Route to initiate Google OAuth flow
+app.get(
+  "/auth/google",
+  passport.authenticate("google", { scope: ["profile", "email"] })
+);
 
 // Callback route that Google will redirect to after authentication
-// app.get('/auth/google/callback',
-//     passport.authenticate('google', { session: false }),   // data exchange from google and send user profile data
-//     (req, res) => {
-//       // console.log(req.user)
-//       // Generate a JWT for the authenticated user
-//       const token = jwt.sign({
-//         id: req.user.id,
-//         displayName: req.user.displayName,
-//       },process.env.JWT_SECRET,
-//       {
-//           expiresIn: '1h'
-//       });
-//       // Send the token to the client
-//       res.json({ token });
-//     }
-//   );
+app.get(
+  "/auth/google/callback",
+  passport.authenticate("google", {
+    session: true,
+  }),
+  (req, res) => {
+    try {
+      const token =req.user.token;
+      res.cookie("token",token, { httpOnly: true }) 
+      res.redirect("/profiles/dashboard");   //  send data to userprofile
+      
+
+    } catch (error) {
+      console.error("Error while setting JWT token:", err); // Handle errors gracefully
+      res.status(500).send("Internal Server Error");
+    }
+  }
+);
 
 app.get("/", function (req, res) {
   res.render("userWelcome");
@@ -73,8 +133,10 @@ app.use("/users", userRoutes);
 
 app.use("/profiles", profileRoutes);
 
-app.use("/pay", payRouter);
-
 app.use("/auth", authRouter);
+
+app.use("/socket", chatRoutes);
+
+// app.use("/msgShow", messageRoutes);
 
 module.exports = app;

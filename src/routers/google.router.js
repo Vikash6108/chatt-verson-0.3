@@ -10,6 +10,7 @@ router.get(
 );
 
 /* /auth/google/callback   */
-router.get("/google/callback", googleController.authGoogleCallbackController);
+router.get("/google/callback",passport.authenticate("google", { scope: ["profile", "email"] }), googleController.authGoogleCallbackController);
 
 module.exports = router;
+

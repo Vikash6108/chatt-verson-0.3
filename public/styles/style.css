@@ -1,4 +1,4 @@
-
+/* 
 *{
     margin: 0;
     padding: 0;
@@ -10,669 +10,125 @@ html,body{
     background-color: #6e6969;
     overflow: hidden
 
-}
-.top_baar{
-    width: 100%;
-    height: 7%;
-    background-color: rgb(0, 0, 0);
-    display: flex;
-    align-items: center;
-    position:relative;
-}
-.top_baar img{
-    background-color: #fff;
-}
-#main{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    overflow: hidden;
-    padding-top:0px;
-    padding-bottom:52px ; 
-    
-}
-.box_menu{
-    width: 3%;
-    height: 100%;
-    background-color: rgb(0, 0, 0);
-    color: white;
-    padding: 10px 20px;
-    display: flex;
-    flex-direction: column; 
-    align-items: center;
-    justify-content: center;
-    gap:32%;
-}
-.top_icon{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    width: 50px;
-    gap: 15px;
-    font-size: large;
-    padding: 8px;
-    cursor: pointer;
+} */
 
-}
-
-.top_icon .line{
-    height: 0.1px;
-    width: 100%;
-    background-color: rgb(56, 54, 54);
-}
-
-.top_icon i{
-    padding: 10px;
-    background-color: #3b3b3b;
-    border-radius: 5px;
-}
-.top_icon i:hover{
-    background-color: #e2e2e2;
-    border-radius: 20px;
-    color: black;
-}
-.top_icon img{
-  width:40px;
-  height:40px;
-  background-color: rgb(57, 56, 57);
-  padding: 9px;
-  border-radius: 7px;
-}
-
-
-
-
-.bottom_icon{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px ;
-    
-    font-size: large;
-    /* background-color: #fff; */
-}
-
-.bottom_icon .line{
-    height: 0.1px;
-    width: 100%;
-    background-color: rgb(56, 54, 54);
-}
-.bottom_icon i{
-    padding: 10px;
-    background-color: rgb(54, 54, 54);
-    border-radius: 5px;
-    
-
-}
-
-.bottom_icon i:hover{
-    background-color: #dddddd;
-    border-radius: 20px;
-    color: #000000;
-}
-
-
-#box_left{
- width: 35%;
- height: 100%;
- background-color: rgb(49, 47, 47);
- border: 1px solid black;
- overflow: hidden;
-}
-
-.box_left_top{
-    width: 100%;
-    height: 15%;
-    background-color: rgb(49, 47, 47);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 5px 5px 3px rgb(185, 185, 185);
-    padding: 10px;
-    border-bottom: 0.5px solid rgb(114, 110, 110);   
-}
-
-
-.box1{
-    width: 100%;
-    height: 50%;
-    padding: 12px ;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: white;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-size: 16px;    
-}
-
-.box1_left{
-    display: flex;
-    align-items: center;
-}
-
-.box1_left h2{
-  font-family: "Carter One", system-ui;
-  font-weight: 400;
-  font-style: normal;
-     
-
-}
-.top_baar>img{
-    width: 45px;
-    height: 45px;
-    margin: 3px 5px;
-    color: white;
-    border-radius: 30px;
-}
-.top_baar>h2{
-    font-weight: 700;
-    color: rgb(255, 255, 255);
-    font-size:x-large;
-    font-family: "VT323", monospace;
-}
-.icon i{
-    font-size:18px ;
-    cursor: pointer;
-    overflow: hidden;
-    padding: 10px;
-    border-radius: 8px;
-    background-color: black;
-}
-.icon{
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    justify-content: space-between;
-}
-.icon i:hover{
-    background-color: #dfdfdf;
-    border-radius: 20px;
-    color: black;
-}
-.box2{
-    width: 95%;
-    height: 35%;
-    padding: 4px;
-    background-color: rgb(87, 85, 85); 
-    border-bottom: 1px solid rgb(194, 191, 191);
-    border-radius: 4px;
-    color: rgb(133, 130, 130);
-    
-}
-.box_left_top .box2 input{
-    width: 95%;
-    height: 100%;
-    border: none;
-    background-color: rgb(87, 85, 85);
-    color: white;
-    outline: none;
-}
- 
- #card_box{
-    width: 100%;
-    height: 100%;
-   margin: 20px ;
-}
- .card{
-    width: 85%;
-    height: 12%;
-    background-color: #312F2F ;
-    margin: 15px 18px;
-    border-radius: 10px;
-    border: 1px solid rgb(110, 109, 109);
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-}
-.card:hover{
-    background-color: #434242;  
-}
-.card_profile{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-size: x-large;
-    color: #dac9c9;
-    align-items: center;
-}
-.card_profile img{
-    width: 19%;
-    height: 99%;
-    padding: 4px;
-    margin-left:4px ;
-    border-radius: 50px;   
-}
-#box_right{
-    width: 70%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: space-between;
-    background-image: url(../images/main\ UI\ chat\ wallpaper.webp);
-    background-position: center;
-    background-size: cover;
-
-}
-.box_right_top{
-    width: 100%;
-    height: 12%;
-    background-color: rgb(49, 47, 47);
-    /* border-top-right-radius: 12px; */
-    /* padding: 0px 10px; */
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.box_right_top .profile{
- width: 100%;
- height: 100%;
- border-bottom: 2px solid rgb(116, 114, 114);
- display: flex;
- align-items: center;
-}
-              
-.box_right_top .profile #profile-left > img{
-width: 75px;
-height: 75px;
-border-radius:50%;
-padding: 2px;
-object-fit: cover;
-}
-#profile-left{
-  width: 60%;
-  height: 100%;
-  padding: 10px;
-  display: flex;
- align-items: center;
- gap: 50px;
- color: white;
- font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-font-size: large;
-/* background-color: pink; */
-}
-
-#profile-right{
-    width: 40%;
-  height: 100%;
-  /* background-color: red; */
-  color: rgb(225, 225, 225);
-  font-size:large;
-  display: flex;
-  align-items: center;
-  justify-content: end;
-  gap: 30px;
-  padding-right:20px ;
+.theme-toggle-btn {
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
-
-}
-#profile-right i{
-    padding: 10px;
-    background-color: #000000;
-    border-radius: 30px;
-}
-#profile-right i:hover{
-    background-color: #dcdcdc;
-    color: rgb(0, 0, 0);
+  font-size: 16px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.box_right_top .icon{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 10%;
-    height: 80%;
-    color: white;   
-}
-.box_right_top .icon i{
-font-size: 30px;
-}
-.box_right_top .icon i:hover{
-    padding: 20px;
-    border-radius: 8px;
-
+.theme-toggle-btn:hover {
+  background-color: #555;
 }
 
-.box_right_buttom{
-    width: 100%;
-    height: 10%;
-    background-color: rgb(49, 47, 47);
-    /* border-bottom-right-radius:12px; */
-    display: flex;
-    align-items: center;
-}
+/* UI */
 
-.box_right_buttom .buttom_box{
-    height: 100%;
-    padding: 0px 20px;
-    color: white;
-    font-size: 25px;
-    display: flex;
-    align-items: center;
-    /* background-color: #615858; */
-    justify-content: space-between;
-    gap: 7px;
-}
-.box_right_buttom .buttom_box i{
-    cursor: pointer ;
-    padding: 8px;
-    border-radius: 8px;
-    color: rgb(198, 198, 198);
-    background-color: rgb(0, 0, 0);
-    
-}
-.box_right_buttom .buttom_box i:hover{
-    /* padding: 8px;  */
-    background-color: #dedfe0;
-    color: rgb(25, 25, 25);
-    /* border-radius: 8px; */
-    border-radius: 50% ;
-    
-}
-.box_right_buttom .buttom_box1{
-    height: 100%;
-    padding: 20px 20px;
-    color: rgb(248, 240, 240);
-    font-size: 27px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.box_right_buttom .buttom_box1 i{
-    cursor: pointer ;
-    padding: 8px;
-    background-color: black;
-    border-radius: 8px;
-}
-
-.box_right_buttom .buttom_box1 i:hover{
-    padding: 8px; 
-    background-color: #cacaca;
-    color: rgb(0, 0, 0);
-    border-radius: 25px;
-}
-.box_right_buttom .type_message{
-    flex-grow: 1;
-    margin-right: 8px;
-    height: 70%;
-    display: flex;
-    padding: 10px 5px;
-    align-items: center;
-    border-radius: 6px;
-    background-color: hsla(0, 1%, 33%, 0.5);
-    
-}
-.box_right_buttom .type_message input{
-    width: 100%;
-    height: 100%;
-    border-radius: 5px;
-    background-color: transparent;
-    border: none;
-    color: white;
-    font-size: 20px;
-    padding: 0px 20px;
-    outline: none;
-
-}
-.box_right_buttom .send_sms{
-   width: 70px;
-   height: 70px;
-   /* color: white; */
-   margin-right:-10px;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   border: none;
-}
-
-.box_right_buttom .send_sms i{
-    font-size: 25px;
-    /* background-color:#3874EB; */
-    padding: 8px;
-    cursor: pointer;
-    color: #dadada;;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-
-}
-
-#pay{
-    height: 100%;
-    padding: 20px 20px;
-    color: rgb(209, 209, 209);
-    font-size: 27px;
-    font-weight: 400;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color:#312F2F;
-    border: none;
-}
-
-
-
-
-
-
-                                       /* welcome css code        */
-#welcome{
-   width: 100%;
-   height: 100%;
-   background-color: rgb(9, 1, 1);
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   justify-content: center;
-   background-size: cover;
-   background-repeat: no-repeat;
-}
-
-.logo{
- width: 200px;
- height: 200px;
- display: flex;
- align-items: center;
- justify-content: center;
-   
-}
- 
-.title{
-  width: 700px;
-  height: 100px;
+/* #profile-logout {
+  width: 100%;
+  height: 49%;
+  background-color: rgb(47, 47, 47);
   display: flex;
   flex-direction: column;
+  justify-content: end;
+  background-color: rgb(0, 0, 0);
   align-items: center;
+}
+
+#logout-user {
+  height: 40px;
+  width: 40px;
+  background-color: white;
+  display: flex;
   justify-content: center;
-  color: rgb(219, 215, 215);
-}
-h2{
-  font-size: x-large;
-  font-family: "Press Start 2P", system-ui;
-     
-}
-a{
-    padding: 10px 50px;
-    background-color: green;
-    border-radius: 5px;
-    border: 1px solid green;
-    cursor: pointer;
-    font-size: larger;
-    text-decoration: none;
-    color: black;
-    font-size: medium;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
- 
-form a:hover{
-    background-color: rgb(16, 165, 16);
- }
- 
-p{
-    color: rgb(190, 183, 183); 
-    margin: 15px;
-    font-size: large;
-    font-family: "Satisfy", cursive;
+  align-items: center;
+  margin-bottom: 10px;
+  border-radius: 50%;
+} */
+#logout-user img {
+  /* width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover; */
 }
 
+/* 
 
 
 
 
 
 
-/*    razorpay css */
 
 
+                       /*  webSocket */
 
-
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-
-} html,body{
-    width: 100%;
-    height: 100%;
-}
-#razorpay{
-    width: 100%;
-    height: 100%;
-    background-color: black; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+#messageContaine {
+  font-family: "Gilroy", sans-serif;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
-#razorpay #images{
-    width: 100%;
-    height: 50%;
-    padding: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.img1 img{
-    width: 350px;
-    height: 350px;   
-}
-.img1 img :hover{
- transform: rotateY(20deg);
- perspective: 500px;
+.message {
+  max-width: 100%;
+  padding: 10px 15px;
+  border-radius: 12px;
+  font-size: 16px;
+  word-wrap: break-word;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-#input-pay{
-    width: 28%;
-    height: 70%;
-    position: absolute;
-    border-radius: 30px;
-    /* border: 2px solid rgb(85, 85, 85); */
-    box-shadow: 2px 2px 15px 2px rgb(255, 117, 117);
-    /* transition: 3s; */
+.left {
+  margin: 20px;
+  align-self: flex-start;
+  background-color: #4b4b4b;
+  color: #ffffff;
+  max-width: 70%;
 }
 
-#input-pay:hover{
-    height: 71%;
-    border-top-left-radius: 50px;
-    border-top-right-radius: 50px;
-    border-bottom-left-radius: 50px;
-    border-bottom-right-radius: 50px;
-    
-    
-}
-
-#input-pay .logo-icon{
-    width: 90%;
-    height:40%;
-      
-}
-#input-pay .logo-icon img{
-background-color: #000000;
-width: 200px;
-height: 170px;
-margin: 5px 110px ;
-margin-top: 15px;
-/* border-radius: 100px;  */
-
+.right {
+  margin: 20px;
+  align-self: flex-end;
+  background-color: hsl(129, 100%, 20%);
+  color: #ffffff;
+  max-width: 70%;
 
 }
 
-form{
-width: 350px;
-height: 290px;
-/* background-color: #fff; */
-margin: 2px 37px;
-}
-form #pay-title{
-    margin: 0px 55px;
-    font-size: x-large;
-}
-#input-pay form div{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 10px;
-    
-}
-form div input{
-    width: 200px;
-    height: 80px;
-    font-size:50px;
-    text-align: center;
-    outline: none;
-    color: white;
-    background-color: black; 
-    border: 1px solid rgb(0, 0, 0);
-    border-radius: 40px;
-        
-}
-form div input:hover{
-    font-size:40px;       
-}
- form div #text{
-    width: 150px;
-    height: 50px;
-    font-size: medium;
-    
-}
-form #rzp-button1{
-   padding: 12px 24px;
-   margin: 15px 110px;
-   background-color: #117418;
-   color: white;
-   border-radius: 25px;
-   border: 1px solid black;
-   
-
+.type_message {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-form #rzp-button1:hover{
-    background-color: black;
-    color: #cbcbcb;
-    border: 2px solid rgb(0, 0, 0);
-    box-shadow: 1px 1px 5px 1px rgb(255, 117, 117);
+input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+}
 
-    /* font-size: medium; */
-    cursor: pointer;
+#sendIcon {
+  font-size: 24px;
+  cursor: pointer;
+  color: #007bff;
+}
 
+#sendIcon:hover {
+  color: #0056b3;
+}
+.timestamp {
+  font-size: 12px;
+  color: #ffffff;
+  margin-left: 8px;
 }
