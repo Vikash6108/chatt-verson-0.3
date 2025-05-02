@@ -13,7 +13,16 @@ module.exports.registerViewController = (req, res) => {
 module.exports.registerUserController = async (req, res) => {
   try {
     const { username, fullname, email, password } = req.body;
+  try {
+    const { username, fullname, email, password } = req.body;
 
+    let profileImage = null;
+    if (req.file) {
+      profileImage = {
+        data: req.file.buffer,
+        contentType: req.file.mimetype,
+      };
+    }
     let profileImage = null;
     if (req.file) {
       profileImage = {
@@ -23,7 +32,15 @@ module.exports.registerUserController = async (req, res) => {
     }
 
     const hashPassword = await bcrypt.hash(password, 10);
+    const hashPassword = await bcrypt.hash(password, 10);
 
+    const user = await userModel.create({
+      username,
+      fullname,
+      email,
+      password: hashPassword,
+      profileImage,
+    });
     const user = await userModel.create({
       username,
       fullname,
@@ -70,6 +87,7 @@ module.exports.loginUserController = async (req, res) => {
   if (!isMatch) {
     return res.status(400).send(`
     <script> alert("invalid password")</script>
+      `);
       `);
   }
 

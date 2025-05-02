@@ -77,6 +77,7 @@ passport.use(
         return done(err, null);
       }
       // Here, you would typically find or create a user in your database
+
       // For this example, we'll just return the profile
     }
   )
