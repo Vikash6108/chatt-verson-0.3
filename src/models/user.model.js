@@ -13,9 +13,18 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
   },
-  conform_password: {
+  googleProfileImage: {
     type: String,
   },
+  profileImage: {
+    data: Buffer,
+    contentType: String
+  },
+  googleId: { 
+    type: String,
+    // required: true, 
+    // unique: true
+   },
 });
 const userModel = mongoose.model("user", userSchema);
 

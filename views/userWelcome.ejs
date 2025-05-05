@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Welcome page</title>
-    <link rel="stylesheet" href="/styles/style.css" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -13,29 +12,40 @@
       rel="stylesheet"
     />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Satisfy&display=swap"
-      rel="stylesheet"
-    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      h2 {
+        font-family: "Press Start 2P", system-ui;
+      }
+      p {
+        font-family: "Satisfy", cursive;
+      }
+      #verson {
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        color: rgb(177, 175, 175);
+      }
+    </style>
   </head>
-  <body>
-    <form id="welcome">
-      <div class="logo">
-        <img src="/images/chatterBox_1-removebg-preview.png" alt="" />
+  <body class="w-full min-h-screen bg-black bg-cover bg-no-repeat flex flex-col items-center justify-center p-4">
+    <form id="welcome" class="flex flex-col items-center justify-center w-full max-w-3xl">
+      <div class="w-full flex items-center justify-center mb-6">
+        <img src="images/chatterBox_2-removebg-preview.png" alt="ChatterBox Logo" class="w-55 md:w-70" />
       </div>
-      <div class="title">
-        <h2>Welcome to ChatterBox</h2>
 
-        <p>
+      <div class="w-full flex flex-col items-center justify-center text-gray-300 text-center px-4">
+        <h2 class="text-lg md:text-2xl mb-4">Welcome to ChatterBox</h2>
+        <p class="text-base md:text-lg text-gray-400">
           A vibrant, user-friendly space to connect, share, and chat seamlessly.
         </p>
       </div>
 
-      <a href="/users/login">Get Started</a>
+      <a href="/users/login"
+        class="px-8 py-2 mt-6 bg-green-600 hover:bg-green-700 text-black rounded border border-green-600 text-base font-semibold"
+      >
+        Get Started
+      </a>
 
-      <p>Version 0.1</p>
+      <p id="verson" class="text-gray-400 text-sm md:text-lg mt-4">Version 0.3</p>
     </form>
   </body>
 </html>

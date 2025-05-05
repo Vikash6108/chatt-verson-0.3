@@ -11,34 +11,41 @@ module.exports.registerViewController = (req, res) => {
 };
 
 module.exports.registerUserController = async (req, res) => {
-  const { username, fullname, email, password, conform_password } = req.body;
+  try {
+    const { username, fullname, email, password } = req.body;
 
-  if (password !== conform_password) {
-    res.send(`
-      <script> alert("Conform password not match") </script>
-        `)
+    let profileImage = null;
+    if (req.file) {
+      profileImage = {
+        data: req.file.buffer,
+        contentType: req.file.mimetype,
+      };
+    }
+
+    const hashPassword = await bcrypt.hash(password, 10);
+
+    const user = await userModel.create({
+      username,
+      fullname,
+      email,
+      password: hashPassword,
+      profileImage,
+    });
+
+    // console.log(user);
+    const token = jwt.sign(
+      {
+        id: user._id,
+        email: user.email,
+      },
+      process.env.JWT_SEC
+    );
+    res.cookie("token", token);
+    res.redirect("/profiles/create");
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Internal Server Error");
   }
-
-  const hashPassword = await bcrypt.hash(password, 10);
-
-  const user = await userModel.create({
-    username,
-    fullname,
-    email,
-    password: hashPassword,
-  });
-
-  const token = jwt.sign(
-    {
-      id: user._id,
-      email: user.email,
-    },
-    process.env.JWT_SEC
-  );
-
-  res.cookie("token", token);
-
-  res.redirect("/profiles/create");
 };
 
 module.exports.loginViewController = (req, res) => {
@@ -58,14 +65,12 @@ module.exports.loginUserController = async (req, res) => {
       `);
   }
 
-
   const isMatch = await bcrypt.compare(password, user.password);
 
   if (!isMatch) {
-     res.status(400).send(`
+    res.status(400).send(`
     <script> alert("invalid password")</script>
-      `)
-
+      `);
   }
 
   const token = jwt.sign(
@@ -79,3 +84,26 @@ module.exports.loginUserController = async (req, res) => {
   res.cookie("token", token);
   res.redirect("/profiles/create");
 };
+
+
+// controllers/authController.js
+
+
+exports.logoutUser = (req, res) => {
+  const token = req.cookies.token;
+
+  if (!token) {
+    return res.redirect("/users/login");
+  }
+
+  // Clear the cookie named 'token'
+  res.clearCookie("token", {
+    httpOnly: true,
+    sameSite: "Lax", // Or "Strict" or "None" depending on your setup
+    secure: process.env.NODE_ENV === "production", // Use secure in production
+  });
+return res.redirect('/users/login');
+};
+
+
+
