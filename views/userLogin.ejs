@@ -91,5 +91,14 @@
         <span class="text-white hover:text-blue-500">Login with Google</span>
       </a>
     </div>
+    <script>
+      window.addEventListener("load", () => {
+        const form = document.querySelector("form");
+        if (form) {
+          form.reset(); // clears all input fields on page load
+        }
+      });
+    </script>
+    
   </body>
 </html>

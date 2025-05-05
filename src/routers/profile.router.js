@@ -1,4 +1,5 @@
 const express = require("express");
+const message = require("../models/message.model");
 const router = express.Router();
 const profileController = require("../controllers/profiles.controller");
 const userMiddleware = require("../middleware/user.middleware");

@@ -46,6 +46,20 @@ module.exports.registerUserController = async (req, res) => {
     console.error(err);
     res.status(500).send("Internal Server Error");
   }
+    // console.log(user);
+    const token = jwt.sign(
+      {
+        id: user._id,
+        email: user.email,
+      },
+      process.env.JWT_SEC
+    );
+    res.cookie("token", token);
+    res.redirect("/profiles/create");
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Internal Server Error");
+  }
 };
 
 module.exports.loginViewController = (req, res) => {

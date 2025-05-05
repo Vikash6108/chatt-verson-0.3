@@ -5,7 +5,7 @@ const http=require("http")
 const socketIO=require("socket.io")
 
 connect();
-require('dotenv').config();
+require("dotenv").config();
 
 const server = http.createServer(app);
 const io = socketIO(server);
@@ -29,4 +29,5 @@ io.on("connection", (socket) => {
 server.listen(process.env.PORT, () => {
   console.log(`Server is running on port ${process.env.PORT}`);
 });
+  
   

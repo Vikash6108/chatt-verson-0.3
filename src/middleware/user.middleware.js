@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
+require("dotenv").config();
 
 module.exports.authUser = (req, res, next) => {
   try {
@@ -15,6 +16,8 @@ module.exports.authUser = (req, res, next) => {
     req.user = decoded;
     next();
   } catch (error) {
+    console.error("JWT error:", error.message);
+    res.status(401).json({ message: "Unauthorized: Invalid token" });
     console.error("JWT error:", error.message);
     res.status(401).json({ message: "Unauthorized: Invalid token" });
   }

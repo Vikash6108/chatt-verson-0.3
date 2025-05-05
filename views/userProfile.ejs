@@ -10,7 +10,19 @@
       rel="stylesheet"
     />
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
+  <body class="w-full h-screen">
+    <div class="w-full h-full flex items-center justify-center">
+      <!--  left div -->
+      <div id="icons-div" class="w-[3%] h-full bg-black">
+        <div
+          id="logo"
+          class="w-full h-[6%] rounded-full flex items-center justify-center bg-white mt-[5px]"
+        >
+          <img
+            class="w-full h-full rounded-full"
+            src="/images/chat-logo.jpg"
   <body class="w-full h-screen">
     <div class="w-full h-full flex items-center justify-center">
       <!--  left div -->
@@ -97,8 +109,18 @@
             class="w-[450px] h-[35px] flex items-center justify-center bg-black rounded-[5px] border-b-[3px] border-b-[#00ff6e]"
           >
             <i class="ri-search-line ml-[3px] text-[#c1c1c1]"></i>
+
+          <div
+            id="search-friend"
+            class="w-[450px] h-[35px] flex items-center justify-center bg-black rounded-[5px] border-b-[3px] border-b-[#00ff6e]"
+          >
+            <i class="ri-search-line ml-[3px] text-[#c1c1c1]"></i>
             <input
               type="search"
+              placeholder="Search user friend . . ."
+              name="search"
+              id="search"
+              class="ml-[5px] w-full h-[20px] text-medium outline-none border-none bg-[#030303] text-[#c1c1c1]"
               placeholder="Search user friend . . ."
               name="search"
               id="search"
@@ -139,6 +161,7 @@
             </h5>
           </div>
         </div>
+        </div>
       </div>
       <!-- left-msg -->
       <div
@@ -159,7 +182,28 @@
             Send and receive message smoothly with <br />
             AI Chatbot, real-time communication Using ChatterBox application
           </p>
+      <!-- left-msg -->
+      <div
+        id="msg-div"
+        class="w-[62%] h-full bg-[#312e2e] text-[#aliceblue] font-sans flex flex-col items-center justify-between"
+      >
+        <div
+          id="windows-chat"
+          class="w-full h-full text-center flex flex-col items-center justify-center"
+        >
+          <img
+            src="/images/chatbot.png"
+            class="w-[100px] h-[100px] text-[#424141] object-cover"
+            alt=""
+          />
+          <h1 class="text-xl text-[#949494]">ChatterBox for Windows</h1>
+          <p class="text-medium text-[#949494]">
+            Send and receive message smoothly with <br />
+            AI Chatbot, real-time communication Using ChatterBox application
+          </p>
         </div>
+        <div id="increption" class="text-[#666666] mb-[70px]">
+          <p><i class="ri-lock-2-line"></i> End-to-end encrypted</p>
         <div id="increption" class="text-[#666666] mb-[70px]">
           <p><i class="ri-lock-2-line"></i> End-to-end encrypted</p>
         </div>
